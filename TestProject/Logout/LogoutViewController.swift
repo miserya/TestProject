@@ -10,7 +10,16 @@ import UIKit
 
 class LogoutViewController: UIViewController {
 
-    var viewModel: LogoutViewModel!
+    private let viewModel: LogoutViewModel
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    init?(coder: NSCoder, viewModel: LogoutViewModel) {
+        self.viewModel = viewModel
+        super.init(coder: coder)
+    }
 
     @IBOutlet private weak var btnPerformRequest: UIButton!
     @IBOutlet private weak var btnShowNext: UIButton!
@@ -31,5 +40,4 @@ class LogoutViewController: UIViewController {
     @IBAction func onLogout(_ sender: Any) {
         viewModel.performLogout()
     }
-
 }

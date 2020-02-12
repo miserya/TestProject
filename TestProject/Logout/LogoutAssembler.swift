@@ -16,8 +16,9 @@ class LogoutAssembler {
         viewModel.request = DomainLayerAssembler.shared.request
         viewModel.logout = DomainLayerAssembler.shared.logout
 
-        let viewController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(identifier: "LogoutViewController")
-        (viewController as? LogoutViewController)?.viewModel = viewModel
+        let viewController = UIStoryboard(name: "Main", bundle: Bundle.main)
+            .instantiateViewController(identifier: "LogoutViewController") { (coder: NSCoder) -> UIViewController? in
+                return LogoutViewController(coder: coder, viewModel: viewModel) }
 
         return (viewModel, viewController)
     }

@@ -15,8 +15,9 @@ class LoginAssembler {
         let viewModel: (LoginViewModelImpl&LoginViewModel&LoginViewModelOuput) = LoginViewModelImpl()
         viewModel.login = DomainLayerAssembler.shared.login
 
-        let viewController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(identifier: "LoginViewController")
-        (viewController as? LoginViewController)?.viewModel = viewModel
+        let viewController = UIStoryboard(name: "Main", bundle: Bundle.main)
+            .instantiateViewController(identifier: "LoginViewController") { (coder: NSCoder) -> UIViewController? in
+                return LoginViewController(coder: coder, viewModel: viewModel) }
         
         return (viewModel, viewController)
     }
